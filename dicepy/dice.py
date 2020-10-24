@@ -1,6 +1,9 @@
 import random
 
-
+# Die class
+# Represents a die with a specified no. of sides
+# constructor: Die(sides)
+# | sides: no. of sides
 class Die:
 
     def __init__(self, sides):
@@ -11,11 +14,17 @@ class Die:
         self.val = None
 
 
+    # roll()
+    # Roll this die and set its new value
     def roll(self):
         self.past_rolls.append(self.val)
         self.val = random.randint(1, self.sides)
 
 
+# DiceRoll class
+# represents a group of dice
+# constructor: DiceRoll(dice)
+# | dice: list of Die objects
 class DiceRoll:
 
     def __repr__(self):
@@ -28,31 +37,43 @@ class DiceRoll:
     def __init__(self, dice):
         self._dice = dice
 
-    
+
+    # dice property - read only    
     @property
     def dice(self):
         return self._dice
 
 
+    # total()
+    # returns sum of dice values
     def total(self):
         return sum(map(lambda d: d.val, self.dice))
 
     
-    def re_roll_lowest(self, n):
+    # reroll_lowest(n)
+    # Params:
+    # n - number of lowest-valued dice to reroll
+    # -- 
+    # returns re-rolled Die objects
+    def reroll_lowest(self, n):
         if n <= 0:
             raise ValueError('n must be higher than 0 to re-roll')
         sort_dice = sorted(self.dice, key=lambda d: d.val)
         re_roll = sort_dice[:n]
         for d in re_roll:
             d.roll()
+        return re_roll
 
 
-    def re_roll_highest(self, n):
+    # reroll_highest(n)
+    # Params:
+    # n - number of lowest-valued dice to reroll
+    # -- 
+    # returns re-rolled Die objects
+    def reroll_highest(self, n):
         if n <= 0:
             raise ValueError('n must be higher than 0 to re-roll')
         sort_dice = sorted(self.dice, key=lambda d: d.val)
         re_roll = sort_dice[(len(sort_dice) - n):]
         for d in re_roll:
             d.roll()
-
-    
