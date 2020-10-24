@@ -7,5 +7,7 @@ setup(name='dicepy',
       author='Josh Bowman',
       author_email='jbowman353@gmail.com',
       packages=['dicepy'],
+      license='MIT',
+      python_requires='>=3',
       # package_dir= { "": "pydice" }
      )
