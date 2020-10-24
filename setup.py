@@ -9,5 +9,6 @@ setup(name='dicepy',
       packages=['dicepy'],
       license='MIT',
       python_requires='>=3',
+      url='https://github.com/Jbowman353/dice-py'
       # package_dir= { "": "pydice" }
      )
