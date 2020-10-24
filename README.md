@@ -1,2 +1,2 @@
-# py-dice
+# dicepy
 simple Python dice rolling library
