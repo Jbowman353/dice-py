@@ -20,13 +20,22 @@ class DiceRoll:
 
     def __repr__(self):
         return 'Dice Roll - Total {} ({})'.format(
-            sum([d.val for d in self.dice]), 
+            self.total(), 
             ', '.join([str(d.val) for d in self.dice])
         )
 
     
     def __init__(self, dice):
-        self.dice = dice
+        self._dice = dice
+
+    
+    @property
+    def dice(self):
+        return self._dice
+
+
+    def total(self):
+        return sum(map(lambda d: d.val, self.dice))
 
     
     def re_roll_lowest(self, n):
@@ -34,14 +43,16 @@ class DiceRoll:
             raise ValueError('n must be higher than 0 to re-roll')
         sort_dice = sorted(self.dice, key=lambda d: d.val)
         re_roll = sort_dice[:n]
-        map(lambda d: d.roll(), re_roll)
+        for d in re_roll:
+            d.roll()
 
 
-    def re_roll_highest(self, n: int):
+    def re_roll_highest(self, n):
         if n <= 0:
             raise ValueError('n must be higher than 0 to re-roll')
         sort_dice = sorted(self.dice, key=lambda d: d.val)
-        i = len
-        re_roll = sort_dice[len(self.dice)]
+        re_roll = sort_dice[(len(sort_dice) - n):]
+        for d in re_roll:
+            d.roll()
 
     
