@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dicepy"
+authors = [
+    {name = "Josh Bowman", email = "hello@jtbowman.com"}
+]
+version = "0.1.1"
+description = "A simply dice rolling library"
+requires-python = ">=3"
+license= {text = "MIT"}
+readme = "README.md"
+dependencies = []
