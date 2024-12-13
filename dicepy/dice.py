@@ -34,7 +34,7 @@ class DiceRoll:
         )
 
     
-    def __init__(self, dice):
+    def __init__(self, dice: list[Die]):
         self._dice = dice
 
 
@@ -77,3 +77,19 @@ class DiceRoll:
         re_roll = sort_dice[(len(sort_dice) - n):]
         for d in re_roll:
             d.roll()
+
+
+    # to_dict
+    # returns a JSON-friendly dict representing the rolled dice
+    def to_dict(self):
+        res = {
+            'total': self.total(),
+            'dice': []
+        }
+        for die in self.dice:
+            res['dice'].append({
+                'sides': die.sides,
+                'val': die.val
+            })
+
+        return res

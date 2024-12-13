@@ -7,5 +7,4 @@ def roll_dice(n, sides):
         d = Die(sides)
         d.roll()
         dice.append(d)
-    dice.sort(key=lambda d: d.val)
     return DiceRoll(dice)
